@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import, division
 
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, RequestsHttpConnection
 
 import cowrie.core.output
 from cowrie.core.config import CowrieConfig
@@ -18,7 +18,7 @@ class Output(cowrie.core.output.Output):
         self.index = CowrieConfig().get('output_elasticsearch', 'index')
         self.type = CowrieConfig().get('output_elasticsearch', 'type', default=None)
         self.pipeline = CowrieConfig().get('output_elasticsearch', 'pipeline', default=None)
-        self.es = Elasticsearch(self.host, verify_certs=False)
+        self.es = Elasticsearch(self.host, verify_certs=False, connection_class=RequestsHttpConnection)
 
     def stop(self):
         pass
