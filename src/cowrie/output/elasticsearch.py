@@ -15,11 +15,10 @@ class Output(cowrie.core.output.Output):
 
     def start(self):
         self.host = CowrieConfig().get('output_elasticsearch', 'host')
-        self.port = CowrieConfig().get('output_elasticsearch', 'port')
         self.index = CowrieConfig().get('output_elasticsearch', 'index')
-        self.type = CowrieConfig().get('output_elasticsearch', 'type')
-        self.pipeline = CowrieConfig().get('output_elasticsearch', 'pipeline')
-        self.es = Elasticsearch('{0}:{1}'.format(self.host, self.port))
+        self.type = CowrieConfig().get('output_elasticsearch', 'type', default=None)
+        self.pipeline = CowrieConfig().get('output_elasticsearch', 'pipeline', default=None)
+        self.es = Elasticsearch(self.host)
 
     def stop(self):
         pass
