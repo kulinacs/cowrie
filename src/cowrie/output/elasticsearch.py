@@ -18,7 +18,7 @@ class Output(cowrie.core.output.Output):
         self.index = CowrieConfig().get('output_elasticsearch', 'index')
         self.type = CowrieConfig().get('output_elasticsearch', 'type', default=None)
         self.pipeline = CowrieConfig().get('output_elasticsearch', 'pipeline', default=None)
-        self.es = Elasticsearch(self.host, verify_certs=False, connection_class=RequestsHttpConnection)
+        self.es = Elasticsearch(self.host, connection_class=RequestsHttpConnection(verify_certs=False))
 
     def stop(self):
         pass

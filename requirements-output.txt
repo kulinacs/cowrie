@@ -5,7 +5,6 @@ csirtgsdk>=0.0.0a17 # Specify version because pip won't install pre-release vers
 requests
 
 # elasticsearch
-requests
 elasticsearch
 
 # hpfeeds
